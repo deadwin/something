@@ -36,3 +36,22 @@ nginx -s start
 
 
 参考：https://help.aliyun.com/document_detail/98728.html?spm=a2c4g.11186623.2.12.20b8625aUx5IgH#concept-n45-21x-yfb
+
+
+如果要将http强制定下到https，参考如下：注意防火墙80端口得开着
+
+server {
+ listen 80;
+ server_name localhost;   #将localhost修改为您证书绑定的域名，例如：www.example.com。
+rewrite ^(.*)$ https://$host$1 permanent;   #将所有http请求通过rewrite重定向到https。
+ location / {
+index index.html index.htm;
+}
+}
+
+
+
+
+
+
+
