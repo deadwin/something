@@ -86,3 +86,20 @@ NodeJS运行时抛出: Error: listen EADDRINUSE ::5000:
 *****************************************************************
 手动搭建FTP站点（CentOS 7）
 参考：https://help.aliyun.com/document_detail/92048.html?spm=a2c4g.11186623.6.1122.36627bfesFpCEY#section-821-887-8np
+注意之后第一步安装好后需要开启防火墙21/20端口，此时就可以用ftp软件访问了！但是并不能看到任何东西，需要进行下一步。
+
+
+注意这3个地方替换后要去掉尖括号，并且防火墙也要开启区间端口，比如
+```pasv_address=<FTP服务器公网IP地址>
+#设置被动模式下，建立数据传输可使用的端口范围的最小值
+pasv_min_port=7500
+#设置被动模式下，建立数据传输可使用的端口范围的最大值
+pasv_max_port=7550
+```
+firewall-cmd --zone=public --add-port=7500-7550/tcp --permanent
+firewall-cmd --reload
+
+否则就算ftp登录成功，也会读取目录列表失败
+
+
+
