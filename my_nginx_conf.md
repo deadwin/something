@@ -26,3 +26,13 @@ nginx 位于/usr/sbin目录。
 
 
 配置完成,校验文件，重启nginx，并开启防火墙443端口后，浏览器即可以https访问网站！
+
+校验：nginx -t./ng 
+
+执行以下命令重启Nginx服务器。
+
+nginx -s stop
+nginx -s start
+
+
+参考：https://help.aliyun.com/document_detail/98728.html?spm=a2c4g.11186623.2.12.20b8625aUx5IgH#concept-n45-21x-yfb
