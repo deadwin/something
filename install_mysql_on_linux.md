@@ -104,3 +104,9 @@ mysql> flush privileges;
 mysql> status
 
 如果是【utf8mb4】那就不用改了
+
+======================
+修改mysql临时密码报错提示过于简单：
+```mysql> set global validate_password_policy=0;
+Query OK, 0 rows affected (0.00 sec)
+```
