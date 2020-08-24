@@ -45,3 +45,62 @@
 
 
 18.输入“yum history sync”同步即可排除此故障。
+==================================================
+然后
+
+whereis mysql
+
+可以看到MySQL 的安装目录是 /usr/bin/
+
+ 
+
+启动服务
+
+systemctl start mysqld
+
+systemctl enable mysqld
+
+systemctl status mysqld
+
+ 
+
+查找初始密码
+
+cat /var/log/mysqld.log | grep password
+
+这里可以看到初始密码
+
+ 
+
+进入mysql
+
+mysql -uroot -p
+
+ 
+
+修改初始密码
+
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY '你的密码';
+
+ 
+
+设置允许远程连接（新版MySQL的方式跟之前的不大一样）
+复制代码
+
+mysql> use mysql;
+
+mysql> select host,user,authentication_string,plugin from user;
+
+mysql> update user set host='%' where user='root';
+
+mysql> flush privileges;
+
+复制代码
+
+ 
+
+查看字符编码
+
+mysql> status
+
+如果是【utf8mb4】那就不用改了
